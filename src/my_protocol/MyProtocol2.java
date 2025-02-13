@@ -40,7 +40,7 @@ public class MyProtocol2 extends IRDTProtocol {
             int datalen = Math.min(DATASIZE, fileContents.length - filePointer);
             Integer[] pkt = new Integer[HEADERSIZE + datalen];
             // write something random into the header byte
-            pkt[0] = 123;
+            pkt[i] = i;
             // copy databytes from the input file into data part of the packet, i.e., after the header
             System.arraycopy(fileContents, filePointer, pkt, HEADERSIZE, datalen);
 
