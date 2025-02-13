@@ -22,7 +22,7 @@ public class MyProtocol extends IRDTProtocol {
 
     // change the following as you wish:
     static final int HEADERSIZE = 1;   // number of header bytes in each packet
-    static final int DATASIZE = 128;   // max. number of user data bytes in each packet
+    static final int DATASIZE = 248;   // max. number of user data bytes in each packet
 
     @Override
     public void sender() {
