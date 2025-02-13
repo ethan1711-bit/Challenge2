@@ -20,6 +20,7 @@ public class
 
 
 
+
 Program {
 
     // Change to your group authentication token
@@ -30,7 +31,7 @@ Program {
     private static int file = 2;
 
     // Change to your protocol implementation
-    private static IRDTProtocol protocolImpl = new MyProtocol();
+    private static IRDTProtocol protocolImpl = new MyProtocol2();
 
     // Challenge server address
     // See the website for the hostname of the server
