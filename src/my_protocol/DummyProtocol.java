@@ -7,22 +7,22 @@ import java.util.Arrays;
 
 /**
  * @version 10-07-2019
- *
+ * <p>
  * Copyright University of Twente, 2013-2025
- *
- **************************************************************************
- *                          = Copyright notice =                          *
- *                                                                        *
- *            This file may  ONLY  be distributed UNMODIFIED              *
+ * <p>
+ * *************************************************************************
+ * = Copyright notice =                          *
+ * *
+ * This file may  ONLY  be distributed UNMODIFIED              *
  * In particular, a correct solution to the challenge must  NOT be posted *
  * in public places, to preserve the learning effect for future students. *
- **************************************************************************
+ * *************************************************************************
  */
 public class DummyProtocol extends IRDTProtocol {
 
     // change the following as you wish:
-    static final int HEADERSIZE=1;   // number of header bytes in each packet
-    static final int DATASIZE=128;   // max. number of user data bytes in each packet
+    static final int HEADERSIZE = 1;   // number of header bytes in each packet
+    static final int DATASIZE = 128;   // max. number of user data bytes in each packet
 
     @Override
     public void sender() {
@@ -38,13 +38,13 @@ public class DummyProtocol extends IRDTProtocol {
         int datalen = Math.min(DATASIZE, fileContents.length - filePointer);
         Integer[] pkt = new Integer[HEADERSIZE + datalen];
         // write something random into the header byte
-        pkt[0] = 123;    
+        pkt[0] = 123;
         // copy databytes from the input file into data part of the packet, i.e., after the header
         System.arraycopy(fileContents, filePointer, pkt, HEADERSIZE, datalen);
 
         // send the packet to the network layer
         getNetworkLayer().sendPacket(pkt);
-        System.out.println("Sent one packet with header="+pkt[0]);
+        System.out.println("Sent one packet with header=" + pkt[0]);
 
         // schedule a timer for 1000 ms into the future, just to show how that works:
         framework.Utils.Timeout.SetTimeout(1000, this, 28);
@@ -63,9 +63,9 @@ public class DummyProtocol extends IRDTProtocol {
 
     @Override
     public void TimeoutElapsed(Object tag) {
-        int z=(Integer)tag;
+        int z = (Integer) tag;
         // handle expiration of the timeout:
-        System.out.println("Timer expired with tag="+z);
+        System.out.println("Timer expired with tag=" + z);
     }
 
     @Override
@@ -88,18 +88,19 @@ public class DummyProtocol extends IRDTProtocol {
             if (packet != null) {
 
                 // tell the user
-                System.out.println("Received packet, length="+packet.length+"  first byte="+packet[0] );
+                System.out.println(
+                        "Received packet, length=" + packet.length + "  first byte=" + packet[0]);
 
                 // append the packet's data part (excluding the header) to the fileContents array, first making it larger
-                int oldlength=fileContents.length;
-                int datalen= packet.length - HEADERSIZE;
-                fileContents = Arrays.copyOf(fileContents, oldlength+datalen);
+                int oldlength = fileContents.length;
+                int datalen = packet.length - HEADERSIZE;
+                fileContents = Arrays.copyOf(fileContents, oldlength + datalen);
                 System.arraycopy(packet, HEADERSIZE, fileContents, oldlength, datalen);
 
                 // and let's just hope the file is now complete
-                stop=true;
+                stop = true;
 
-            }else{
+            } else {
                 // wait ~10ms (or however long the OS makes us wait) before trying again
                 try {
                     Thread.sleep(10);

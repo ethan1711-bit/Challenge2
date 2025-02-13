@@ -17,6 +17,9 @@ import java.io.InputStream;
  * @version 11-02-2025
  */
 public class
+
+
+
 Program {
 
     // Change to your group authentication token
@@ -24,7 +27,7 @@ Program {
 
     // Choose ID of test file to transmit: 1, 2, 3, 4, 5 or 6
     // Sizes in bytes are: 248, 2085, 6267, 21067, 53228, 141270
-    private static int file = 1;
+    private static int file = 2;
 
     // Change to your protocol implementation
     private static IRDTProtocol protocolImpl = new MyProtocol();
