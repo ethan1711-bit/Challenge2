@@ -33,7 +33,7 @@ public class MyProtocol extends IRDTProtocol {
 
         // keep track of where we are in the data
         int filePointer = 0;
-
+        System.out.println(filePointer);
         // create a new packet of appropriate size
         int datalen = Math.min(DATASIZE, fileContents.length - filePointer);
         Integer[] pkt = new Integer[HEADERSIZE + datalen];
