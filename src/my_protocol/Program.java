@@ -61,6 +61,7 @@ Program {
 
             System.out.println("Done.");
 
+
             System.out.println("[FRAMEWORK] Press Enter to start the simulation as sender...");
             System.out.println(
                     "[FRAMEWORK] (Simulation will be started automatically as receiver " +

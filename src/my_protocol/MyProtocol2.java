@@ -38,16 +38,19 @@ public class MyProtocol2 extends IRDTProtocol {
             System.out.println(filePointer);
             // create a new packet of appropriate size
             int datalen = Math.min(DATASIZE, fileContents.length - filePointer);
-            Integer[] pkt = new Integer[HEADERSIZE + datalen];
-            // write something random into the header byte
-            pkt[i] = i;
-            // copy databytes from the input file into data part of the packet, i.e., after the header
-            System.arraycopy(fileContents, filePointer, pkt, HEADERSIZE, datalen);
+            for(int j = 0; j<DATASIZE; j++){
+                Integer[] pkt = new Integer[HEADERSIZE + datalen];
+                // write something random into the header byte
+                pkt[i] = i;
+                // copy databytes from the input file into data part of the packet, i.e., after the header
+                System.arraycopy(fileContents, filePointer, pkt, HEADERSIZE, datalen);
 
-            // send the packet to the network layer
-            getNetworkLayer().sendPacket(pkt);
-            System.out.println("Sent one packet with header=" + pkt[i]);
-            Utils.Timeout.SetTimeout(1000, this, 28);
+                // send the packet to the network layer
+                getNetworkLayer().sendPacket(pkt);
+                System.out.println("Sent one packet with header=" + pkt[i]);
+                Utils.Timeout.SetTimeout(1000, this, 28);
+            }
+ 
 
 
             // schedule a timer for 1000 ms into the future, just to show how that works:
