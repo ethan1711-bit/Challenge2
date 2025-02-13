@@ -26,7 +26,7 @@ public class MyProtocol2 extends IRDTProtocol {
 
     @Override
     public void sender() {
-        for (int i; i < DATASIZE; i++) {
+        for (int i = 0; i < DATASIZE; i++) {
             System.out.println("Sending...");
 
             // read from the input file
@@ -47,7 +47,7 @@ public class MyProtocol2 extends IRDTProtocol {
             // send the packet to the network layer
             getNetworkLayer().sendPacket(pkt);
             System.out.println("Sent one packet with header=" + pkt[0]);
-            framework.Utils.Timeout.SetTimeout(1000, this, 28);
+            Utils.Timeout.SetTimeout(1000, this, 28);
 
 
             // schedule a timer for 1000 ms into the future, just to show how that works:
